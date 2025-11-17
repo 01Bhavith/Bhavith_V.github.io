@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Resume - Professional Portfolio</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">My Portfolio</div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Resume</a></li>
+                <li><a href="biodata.html">Biodata</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="fade-in">Hello, I'm <span class="highlight">Bhavith V</span></h1>
+                <p class="subtitle fade-in">Computer Science & Engineering Student ’27 | Cybersecurity Enthusiast</p>
+                <div class="social-links fade-in">
+                    <a href="https://www.linkedin.com/in/bhavith-v-1501632a4/ed" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/01Bhavith/01Bhavith" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="mailto:bhavithv5689@gmail.com" aria-label="Send an email to bhavithv5689@gmail.com"><i class="fas fa-envelope"></i></a>
+                </div>
+                <a href="#about" class="btn btn-primary">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="/images/Professional photo.png" alt="Profile Picture">
+                </div>
+                <div class="about-text">
+                    <h3>Professional Summary</h3>
+                    <p>A passionate and dedicated Computer Science student with strong expertise in web development,
+                        learning Cybersecurity and software engineering. Experienced in building modern, responsive web
+                        applications using cutting-edge technologies.</p>
+                    <div class="tabs">
+                        <div class="tab-buttons">
+                            <button class="tab-btn active" data-tab="skills">Skills</button>
+                            <button class="tab-btn" data-tab="experience">Experience</button>
+                            <button class="tab-btn" data-tab="education">Education</button>
+                        </div>
+                        <div class="tab-content">
+                            <div id="skills" class="tab-pane active">
+                                <ul class="skills-list">
+                                    <li><i class="fas fa-check-circle"></i> Python & Fast API framework</li>
+                                    <li><i class="fas fa-check-circle"></i> Postman testing </li>
+                                    <li><i class="fas fa-check-circle"></i> React.js & Node.js</li>
+                                    <li><i class="fas fa-check-circle"></i> Firebase & Vercel</li>
+                                    <li><i class="fas fa-check-circle"></i> Git & GitHub</li>
+                                    <li><i class="fas fa-check-circle"></i> MongoDB</li>
+                                </ul>
+                            </div>
+                            <div id="experience" class="tab-pane">
+                                <div class="timeline-item">
+                                    <h4>Full-Stack Developer - PostureAI</h4>
+                                    <p class="date">2025 - Present</p>
+                                    <p>Developed PostureAI monitoring system with real-time video processing and AI
+                                        integration.</p>
+                                </div>
+                                <div class="timeline-item">
+                                    <h4>Open Source Contributor - Hacktoberfest</h4>
+                                    <p class="date">2025</p>
+                                    <p>Contributed to multiple open-source projects on GitHub, improving documentation
+                                        and fixing bugs.</p>
+                                </div>
+                            </div>
+                            <div id="education" class="tab-pane">
+                                <div class="timeline-item">
+                                    <h4>Bachelor of Engineering - Computer Science & Engineering</h4>
+                                    <p class="date">2023 - 2027</p>
+                                    <p>Currently pursuing 3rd year with focus on Cybersecurity Professional.</p>
+                                </div>
+                                <div class="timeline-item">
+                                    <h4>High School</h4>
+                                    <p class="date">2021 - 2023</p>
+                                    <p>Completed with distinction in Science stream.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects">
+        <div class="container">
+            <h2 class="section-title">My Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="/images/icon.png" alt="Project 1">
+                        <div class="project-overlay">
+                            <a href="https://posture-ai-frontend.onrender.com/" class="btn-link"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>PostureAI - Transform Your Health Journey</h3>
+                        <p>Real-time posture monitoring application with AI-powered analysis.</p>
+                        <div class="project-tags">
+                            <span>React.js</span>
+                            <span>Node.js</span>
+                            <span>MongoDB</span>
+                            <span>Deep Learning model - movenet</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="/images/P2.webp" alt="Project 3">
+                        <div class="project-overlay">
+                            <a href="https://edubot-canara.streamlit.app/" class="btn-link"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Chatbot</h3>
+                        <p>Built Edubot using streamlit an Gemini API intergration.</p>
+                        <div class="project-tags">
+                            <span>Python</span>
+                            <span>Streamlit framework</span>
+                            <span>Gemini API</span>
+                            <span>json</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Bhavith V. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
