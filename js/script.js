@@ -2,11 +2,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const preloader = document.getElementById('preloader');
 
-    // 1. Session Storage & Back-Button Fix
-    // Check if the user has already seen the boot sequence this session
-    if (!sessionStorage.getItem('systemBooted')) {
-        
-        // First visit: Lock scroll, disable native scroll restoration, run animation
+    // 1. Smart Preloader Logic (Plays on Refresh/New Visit, Skips on Back Button)
+    const navEntries = performance.getEntriesByType("navigation");
+    const isBackForward = navEntries.length > 0 && navEntries[0].type === "back_forward";
+
+    if (!isBackForward) {
+        // Fresh visit or page refresh: Play the animation
         if ('scrollRestoration' in history) {
             history.scrollRestoration = 'manual';
         }
@@ -21,88 +22,108 @@ document.addEventListener('DOMContentLoaded', () => {
                 preloader.style.display = 'none';
                 document.body.style.overflow = '';
                 window.scrollTo(0, 0); 
-                // Mark system as booted for this session
-                sessionStorage.setItem('systemBooted', 'true');
             }, 800);
         }, 4000); // 4 seconds total preloader sequence
 
     } else {
-        // Returning visit (Back Button or Refresh): 
-        // Instantly hide preloader, enable native scroll restoration
+        // User clicked the Back button: Instantly hide preloader, restore scroll
         if ('scrollRestoration' in history) {
             history.scrollRestoration = 'auto'; 
         }
-        preloader.style.display = 'none';
+        if (preloader) {
+            preloader.style.display = 'none';
+        }
         document.body.style.overflow = '';
     }
 
-    // 2. Matrix Rain Canvas Logic
+    // 2. Dynamic Footer Year
+    const yearEl = document.getElementById("year");
+    if (yearEl) {
+        yearEl.textContent = new Date().getFullYear();
+    }
+
+    // 3. Matrix Rain Canvas Logic (Performance Upgraded)
     const canvas = document.getElementById('matrix-canvas');
-    const ctx = canvas.getContext('2d');
-
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    const binary = '01';
-    const characters = binary.split('');
-    const fontSize = 16;
-    let columns = canvas.width / fontSize;
-
-    let drops = [];
-    for (let x = 0; x < columns; x++) {
-        drops[x] = 1;
-    }
-
-    function drawMatrix() {
-        ctx.fillStyle = 'rgba(10, 14, 20, 0.05)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        ctx.fillStyle = '#00ff41';
-        ctx.font = fontSize + 'px monospace';
-
-        for (let i = 0; i < drops.length; i++) {
-            const text = characters[Math.floor(Math.random() * characters.length)];
-            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                drops[i] = 0;
-            }
-            drops[i]++;
-        }
-    }
-
-    setInterval(drawMatrix, 35);
-
-    window.addEventListener('resize', () => {
+    
+    if (canvas) {
+        const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-        columns = canvas.width / fontSize;
-        drops = [];
+
+        const binary = '01';
+        const characters = binary.split('');
+        const fontSize = 16;
+        let columns = canvas.width / fontSize;
+
+        let drops = [];
         for (let x = 0; x < columns; x++) {
             drops[x] = 1;
         }
-    });
 
-    // 3. Scroll Logic (Navbar visibility & Matrix Canvas Opacity)
+        let lastDrawTime = 0;
+        const fpsInterval = 35; // 35ms per frame
+
+        function drawMatrix(timestamp) {
+            requestAnimationFrame(drawMatrix);
+
+            const elapsed = timestamp - lastDrawTime;
+            if (elapsed > fpsInterval) {
+                lastDrawTime = timestamp - (elapsed % fpsInterval);
+
+                ctx.fillStyle = 'rgba(10, 14, 20, 0.05)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                ctx.fillStyle = '#00ff41';
+                ctx.font = fontSize + 'px monospace';
+
+                for (let i = 0; i < drops.length; i++) {
+                    const text = characters[Math.floor(Math.random() * characters.length)];
+                    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                        drops[i] = 0;
+                    }
+                    drops[i]++;
+                }
+            }
+        }
+        requestAnimationFrame(drawMatrix);
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            columns = canvas.width / fontSize;
+            drops = [];
+            for (let x = 0; x < columns; x++) {
+                drops[x] = 1;
+            }
+        }, { passive: true });
+    }
+
+    // 4. Scroll Logic (Navbar visibility & Matrix Canvas Opacity)
     const navbar = document.getElementById('navbar');
 
     window.addEventListener('scroll', () => {
         const landingHeight = window.innerHeight;
 
-        if (window.scrollY > landingHeight * 0.8) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
+        if (navbar) {
+            if (window.scrollY > landingHeight * 0.8) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
         }
 
-        if (window.scrollY > landingHeight * 0.3) {
-            canvas.style.opacity = '0.12'; 
-        } else {
-            canvas.style.opacity = '0';
+        if (canvas) {
+            if (window.scrollY > landingHeight * 0.3) {
+                canvas.style.opacity = '0.12'; 
+            } else {
+                canvas.style.opacity = '0';
+            }
         }
-    });
+    }, { passive: true });
 
-    // 4. 3D Tilt Effect for Project and Skill Cards
+    // 5. 3D Tilt Effect for Project and Skill Cards
     const cards = document.querySelectorAll('.tilt-card');
     
     const isTouchDevice = () => {
@@ -138,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 5. Scroll Intersection Observer
+    // 6. Scroll Intersection Observer
     const observerOptions = {
         root: null,
         rootMargin: '0px',
