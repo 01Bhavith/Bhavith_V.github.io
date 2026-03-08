@@ -1,9 +1,8 @@
-# Bhavith V | Cybersecurity & Infrastructure Portfolio
+# Bhavith V | Portfolio
 
-> [cite_start]A highly interactive, dark-themed developer portfolio designed for a Cybersecurity and SOC Analyst role. Built with a focus on performance, secure deployment, and high-end UI/UX.
 
 ## 🔗 Live Demo
-*(Insert your Vercel deployment link here once deployed, e.g., https://bhavith-portfolio.vercel.app)*
+https://bhavith-v.vercel.app/
 
 ---
 
