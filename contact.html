@@ -3,106 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Me</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Contact | Bhavith V.</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="logo">My Portfolio</div>
+    <nav class="navbar scrolled">
+        <div class="container nav-container">
+            <div class="logo">BV.</div>
             <ul class="nav-links">
-                <li><a href="index.html">Resume</a></li>
-                <li><a href="biodata.html">Biodata</a></li>
-                <li><a href="contact.html" class="active">Contact</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
         </div>
     </nav>
 
-    <!-- Contact Section -->
     <section class="contact-section">
         <div class="container">
-            <h1 class="page-title">Get In Touch</h1>
-            <div class="contact-container">
+            <h1 class="section-title fade-in">Get In Touch</h1>
+            
+            <div class="contact-container fade-in">
                 <div class="contact-info">
-                    <h2>Contact Information</h2>
-                    <p>Feel free to reach out for collaborations, projects, or just a friendly chat!</p>
-                    
+                    <h2>Let's build something.</h2>
+                    <p>Whether you have a question or just want to say hi, my inbox is always open.</p>
+
                     <div class="info-item">
                         <i class="fas fa-envelope"></i>
-                        <div>
-                            <h3>Email</h3>
-                            <p>bhavithv5689@gmail.com</p>
-                        </div>
+                        <span>bhavithv5689@gmail.com</span>
                     </div>
-                    
                     <div class="info-item">
                         <i class="fas fa-phone"></i>
-                        <div>
-                            <h3>Phone</h3>
-                            <p>+91 9972446405</p>
-                        </div>
+                        <span>+91 9972446405</span>
                     </div>
-                    
                     <div class="info-item">
                         <i class="fas fa-map-marker-alt"></i>
-                        <div>
-                            <h3>Location</h3>
-                            <p>Mangalore, Karnataka, India</p>
-                        </div>
-                    </div>
-                    
-                    <div class="social-icons">
-                        <a href="https://www.linkedin.com/in/bhavith-v-1501632a4/" target="_blank"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://github.com/01Bhavith/01Bhavith" target="_blank"><i class="fab fa-github"></i></a>
-                    <a href="mailto:bhavithv5689@gmail.com" aria-label="Send an email to bhavithv5689@gmail.com"><i class="fas fa-envelope"></i></a>
+                        <span>Mangaluru, Karnataka, India</span>
                     </div>
                 </div>
 
-                <div class="contact-form">
-                    <form id="contactForm">
+                <div class="contact-form-wrapper">
+                    <form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID_HERE" method="POST">
                         <div class="form-group">
-                            <label for="name">Your Name</label>
+                            <label for="name">Name</label>
                             <input type="text" id="name" name="name" required>
                         </div>
-                        
                         <div class="form-group">
-                            <label for="email">Your Email</label>
+                            <label for="email">Email</label>
                             <input type="email" id="email" name="email" required>
                         </div>
-                        
-                        <div class="form-group">
-                            <label for="subject">Subject</label>
-                            <input type="text" id="subject" name="subject" required>
-                        </div>
-                        
                         <div class="form-group">
                             <label for="message">Message</label>
                             <textarea id="message" name="message" rows="5" required></textarea>
                         </div>
-                        
                         <button type="submit" class="btn btn-primary">Send Message</button>
                     </form>
-                    <div id="formMessage" class="form-message"></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Bhavith V. All rights reserved.</p>
+            <p>&copy; <span id="year"></span> Bhavith V. Engineered for performance.</p>
         </div>
     </footer>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="js/script.js"></script>
 </body>
 </html>
